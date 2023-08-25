@@ -23,12 +23,12 @@ class Program
     protected static void Process(string[] strings) 
     {
         if( strings.Length > 0 && strings[0] == "server" ) {
-            Console.WriteLine("Server is not running...");
+            Console.WriteLine("Server is running...");
 
             // Prepare the arguments for running the websocket server.
             string[] commands = StringUtil.Shift(strings, 1);
-            int webport = commands.Length > 1 ? Int32.Parse(strings[0]) : 8080;
-            string webip = strings.Length > 2 ? commands[1] : "127.0.0.1";
+            string webip = strings.Length > 2 ? commands[0] : "127.0.0.1";
+            int webport = commands.Length > 1 ? Int32.Parse(commands[1]) : 8080;
 
             // Instantiate WS Server and Start.
             WebSocketServer server = new WebSocketServer();
