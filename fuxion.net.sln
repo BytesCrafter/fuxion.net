@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fuxion.net", "fuxion.net.csproj", "{C12D9F4F-1721-4F99-87A8-1C78BC5238D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fuxion.Console", "Fuxion.Console\Fuxion.Console.csproj", "{31C16D62-32CE-4E08-8D50-1719A0A64358}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fuxion.Core", "Fuxion.Core\Fuxion.Core.csproj", "{A9AD9044-048B-4935-8394-E3B4FAD0EEBE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C12D9F4F-1721-4F99-87A8-1C78BC5238D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C12D9F4F-1721-4F99-87A8-1C78BC5238D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C12D9F4F-1721-4F99-87A8-1C78BC5238D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C12D9F4F-1721-4F99-87A8-1C78BC5238D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31C16D62-32CE-4E08-8D50-1719A0A64358}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31C16D62-32CE-4E08-8D50-1719A0A64358}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31C16D62-32CE-4E08-8D50-1719A0A64358}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31C16D62-32CE-4E08-8D50-1719A0A64358}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9AD9044-048B-4935-8394-E3B4FAD0EEBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9AD9044-048B-4935-8394-E3B4FAD0EEBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9AD9044-048B-4935-8394-E3B4FAD0EEBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9AD9044-048B-4935-8394-E3B4FAD0EEBE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
