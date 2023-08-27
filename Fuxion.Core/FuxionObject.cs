@@ -7,6 +7,7 @@ using WebSocketSharp.Server;
 using Fuxion.Core;
 using System.Security.Cryptography;
 using System.ServiceModel.Channels;
+using Fuxion.Core.Class;
 
 namespace Fuxion
 {
@@ -59,12 +60,10 @@ namespace Fuxion
 
         protected string getMessageString(string _id, string _data)
         {
-            Core.Class.Message mesgString = new Core.Class.Message()
-            {
-                id = _id,
-                data = _name,
-            };
-            return JsonConvert.SerializeObject(mesgString);
+            Core.Class.Message msg = JsonConvert
+                .DeserializeObject<Core.Class.Message>(_data);
+            msg.id = this.ID;
+            return JsonConvert.SerializeObject(msg);
         }
 
         protected override void OnClose(CloseEventArgs e)
@@ -86,10 +85,21 @@ namespace Fuxion
 
         protected override void OnMessage(MessageEventArgs e)
         {
-            if(e.Data == "users-list")
+            if (e.Data == "users-list")
             {
                 string userList = this.ListUser();
                 Sessions.SendTo(userList, this.ID);
+            }
+
+            else if ( e.Data.Contains((String)"message-all") )
+            {
+                string stringjson = this.getMessageString(this.ID, e.Data);
+                
+                this.ActiveUsers().ForEach((User user) =>
+                {
+                    Sessions.SendToAsync(stringjson, user.id, null);
+                });
+                Sessions.SendToAsync(stringjson, this.ID, null);
             }
 
             else
@@ -99,7 +109,7 @@ namespace Fuxion
             }
         }
 
-        private string ListUser()
+        private List<User> ActiveUsers()
         {
             //Get all active users.
             List<Core.Class.User> users = new List<Core.Class.User>();
@@ -112,11 +122,18 @@ namespace Fuxion
                     Core.Class.User cuser = FuxionManager.GetById(curId);
                     if (cuser != null)
                     {
-                        Console.WriteLine($" User {cuser}");
                         users.Add(cuser);
                     }
                 }
             });
+
+            return users;
+        }
+
+        private string ListUser()
+        {
+            //Get all active users.
+            List<Core.Class.User> users = this.ActiveUsers();
             Core.Class.Actives dataObj = new Core.Class.Actives()
             {
                 users = users,
@@ -143,6 +160,9 @@ namespace Fuxion
             Console.WriteLine($"Connected: {_name} with id of #{this.ID}");
             string stringjson = this.getUserObjectString(this.ID, _name, "open");
             Sessions.Broadcast(stringjson);
+
+            string stringSelf = this.getUserObjectString(this.ID, _name, "open-self");
+            Sessions.SendTo(stringSelf, this.ID);
         }
     }
 }

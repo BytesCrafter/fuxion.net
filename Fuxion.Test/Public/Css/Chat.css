@@ -261,3 +261,8 @@ img {
 .hide {
     display: none;
 }
+
+.self {
+    border-left: 10px solid #cbcbcb;
+    background-color: white;
+}

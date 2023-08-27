@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-    <title>Fuxion NET Chat Demo</title>
+    <title>Fuxion NET - Chat Demo</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="favicon.png">
@@ -13,7 +13,7 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-light navbar-laravel">
             <div class="container">
-                <a class="navbar-brand" href="#">Fuxion NET Chat Demo</a>
+                <a class="navbar-brand" href="#">Fuxion NET - Chat Demo</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -58,8 +58,8 @@
             </main>
         </div>
 
-        <div id="chat-container" class="container hide">
-            <h3 class=" text-center">Messaging</h3>
+        <div id="chat-container" class="hide">
+            <h3 class=" text-center">Realtime Chat Application</h3>
             <div class="messaging">
                 <div class="inbox_msg">
                     <div class="inbox_people">
@@ -84,32 +84,12 @@
                     </div>
                     <div class="mesgs">
                         <div class="msg_history">
-                            <div class="incoming_msg">
-                                <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="fuxion"> </div>
-                                <div class="received_msg">
-                                    <div class="received_withd_msg">
-                                        <p>
-                                            Test which is a new approach to have all
-                                            solutions
-                                        </p>
-                                        <span class="time_date"> 11:01 AM    |    June 9</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="outgoing_msg">
-                                <div class="sent_msg">
-                                    <p>
-                                        Test which is a new approach to have all
-                                        solutions
-                                    </p>
-                                    <span class="time_date"> 11:01 AM    |    June 9</span>
-                                </div>
-                            </div>
+                            
                         </div>
                         <div class="type_msg">
                             <div class="input_msg_write">
-                                <input type="text" class="write_msg" placeholder="Type a message" />
-                                <button class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+                                <input id="send-input" type="text" class="write_msg" placeholder="Type a message" />
+                                <button id="send-button" class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
                             </div>
                         </div>
                     </div>
