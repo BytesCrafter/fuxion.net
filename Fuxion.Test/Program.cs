@@ -106,21 +106,24 @@ namespace Fuxion
 
           if (path.EndsWith (".html")) {
             res.ContentType = "text/html";
-            res.ContentEncoding = Encoding.UTF8;
+          }
+          else if (path.EndsWith(".css"))
+          {
+              res.ContentType = "text/css";
           }
           else if (path.EndsWith (".js")) {
             res.ContentType = "application/javascript";
-            res.ContentEncoding = Encoding.UTF8;
           }
 
+          res.ContentEncoding = Encoding.UTF8;
           res.ContentLength64 = contents.LongLength;
 
           res.Close (contents, true);
         };
 
       // Add the WebSocket services.
-      httpsv.AddWebSocketService<Echo> ("/Echo");
-      httpsv.AddWebSocketService<Chat> ("/Chat");
+      httpsv.AddWebSocketService<FuxionObject> ("/Echo");
+      httpsv.AddWebSocketService<FuxionObject> ("/Chat");
 
       // Add the WebSocket service with initializing.
       /*
