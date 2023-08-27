@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fuxion.Console", "Fuxion.Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fuxion.Core", "Fuxion.Core\Fuxion.Core.csproj", "{73A5AA71-32C6-4712-9E65-5A36A6B97BA1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fuxion.Desktop", "Fuxion.Desktop\Fuxion.Desktop.csproj", "{472E5555-04BE-4F34-9886-A347E37CBF27}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fuxion.Test", "Fuxion.Test\Fuxion.Test.csproj", "{C648BA25-77E5-4A40-A97F-D0AA37B9FB26}"
 EndProject
 Global
@@ -33,6 +35,22 @@ Global
 		{73A5AA71-32C6-4712-9E65-5A36A6B97BA1}.Release_Ubuntu|Any CPU.Build.0 = Release_Ubuntu|Any CPU
 		{73A5AA71-32C6-4712-9E65-5A36A6B97BA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73A5AA71-32C6-4712-9E65-5A36A6B97BA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{472E5555-04BE-4F34-9886-A347E37CBF27}.Debug_Ubuntu|Any CPU.ActiveCfg = Debug|Any CPU
+		{472E5555-04BE-4F34-9886-A347E37CBF27}.Debug_Ubuntu|Any CPU.Build.0 = Debug|Any CPU
+		{472E5555-04BE-4F34-9886-A347E37CBF27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{472E5555-04BE-4F34-9886-A347E37CBF27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{472E5555-04BE-4F34-9886-A347E37CBF27}.Release_Ubuntu|Any CPU.ActiveCfg = Release|Any CPU
+		{472E5555-04BE-4F34-9886-A347E37CBF27}.Release_Ubuntu|Any CPU.Build.0 = Release|Any CPU
+		{472E5555-04BE-4F34-9886-A347E37CBF27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{472E5555-04BE-4F34-9886-A347E37CBF27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C648BA25-77E5-4A40-A97F-D0AA37B9FB26}.Debug_Ubuntu|Any CPU.ActiveCfg = Debug_Ubuntu|Any CPU
+		{C648BA25-77E5-4A40-A97F-D0AA37B9FB26}.Debug_Ubuntu|Any CPU.Build.0 = Debug_Ubuntu|Any CPU
+		{C648BA25-77E5-4A40-A97F-D0AA37B9FB26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C648BA25-77E5-4A40-A97F-D0AA37B9FB26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C648BA25-77E5-4A40-A97F-D0AA37B9FB26}.Release_Ubuntu|Any CPU.ActiveCfg = Release_Ubuntu|Any CPU
+		{C648BA25-77E5-4A40-A97F-D0AA37B9FB26}.Release_Ubuntu|Any CPU.Build.0 = Release_Ubuntu|Any CPU
+		{C648BA25-77E5-4A40-A97F-D0AA37B9FB26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C648BA25-77E5-4A40-A97F-D0AA37B9FB26}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
