@@ -3,15 +3,15 @@ using System.Threading;
 using WebSocketSharp;
 using WebSocketSharp.Server;
 
-namespace Fuxion.Demo
+namespace Fuxion
 {
-    public class Chat : WebSocketBehavior
+    public class FuxionObject : WebSocketBehavior
     {
         private string _name = "";
         private static int _number = 0;
         private string _prefix;
 
-        public Chat()
+        public FuxionObject()
         {
             _prefix = "user#";
         }

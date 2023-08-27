@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\websocket-sharp\websocket-sharp.csproj" />
+    <ProjectReference Include="..\Fuxion.Core\Fuxion.Core.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using WebSocketSharp;
 
-namespace Fuxion
+namespace Fuxion.Client
 {
-    public class Client
+    public class FuxionClient
     {
         public void Connect()
         {
