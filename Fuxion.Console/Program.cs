@@ -21,7 +21,7 @@ class Program
             for (int i = 0; i < clients; i++)
             {
                 FuxionClient client = new FuxionClient();
-                client.Connect();
+               client.Connect("localhost", 8000);
             }
         } 
         
