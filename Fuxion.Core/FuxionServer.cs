@@ -18,7 +18,7 @@ namespace Fuxion.Server
 #endif
             // To provide the HTTP Authentication (Basic/Digest).
             wssv.AuthenticationSchemes = AuthenticationSchemes.Anonymous;
-            wssv.Realm = "WebSocket Test";
+            wssv.Realm = "Fuxion NET";
             wssv.UserCredentialsFinder = id => {
                 var name = id.Name;
 

@@ -1,7 +1,12 @@
 using System;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 using System.Threading;
 using WebSocketSharp;
 using WebSocketSharp.Server;
+using Fuxion.Core;
+using System.Security.Cryptography;
+using System.ServiceModel.Channels;
 
 namespace Fuxion
 {
@@ -29,7 +34,7 @@ namespace Fuxion
             }
         }
 
-        private string getName()
+        public string getName()
         {
             var name = QueryString["name"];
 
@@ -41,35 +46,103 @@ namespace Fuxion
             return Interlocked.Increment(ref _number);
         }
 
+        protected string getUserObjectString(string _id, string _name, string _type = "")
+        {
+            Core.Class.User userString = new Core.Class.User()
+            {
+                id = _id,
+                name = _name,
+                type = _type
+            };
+            return JsonConvert.SerializeObject(userString);
+        }
+
+        protected string getMessageString(string _id, string _data)
+        {
+            Core.Class.Message mesgString = new Core.Class.Message()
+            {
+                id = _id,
+                data = _name,
+            };
+            return JsonConvert.SerializeObject(mesgString);
+        }
+
         protected override void OnClose(CloseEventArgs e)
         {
             if (_name == null)
                 return;
 
-            var fmt = "{0} got logged off...";
-            var msg = string.Format(fmt, _name);
+            //Remove the user.
+            FuxionManager.RemoveObject(new Core.Class.User()
+            {
+                id = this.ID,
+                name = _name,
+            });
 
-            Sessions.Broadcast(msg);
+            Console.WriteLine($"Disconnected: {_name} with id of #{this.ID}");
+            string stringjson = this.getUserObjectString(this.ID, _name, "close");
+            Sessions.Broadcast(stringjson);
         }
 
         protected override void OnMessage(MessageEventArgs e)
         {
-            var fmt = "{0}: {1}";
-            var msg = string.Format(fmt, _name, e.Data);
+            if(e.Data == "users-list")
+            {
+                string userList = this.ListUser();
+                Sessions.SendTo(userList, this.ID);
+            }
 
-            Console.WriteLine($"Name: {_name}L: {msg}");
-            Sessions.Broadcast(msg);
+            else
+            {
+                string stringjson = this.getMessageString(this.ID, e.Data);
+                Sessions.Broadcast(stringjson);
+            }
+        }
+
+        private string ListUser()
+        {
+            //Get all active users.
+            List<Core.Class.User> users = new List<Core.Class.User>();
+
+            List<string> activeID = Sessions.ActiveIDs.ToList<string>();
+            activeID.ForEach((string curId) =>
+            {
+                if (curId != this.ID)
+                {
+                    Core.Class.User cuser = FuxionManager.GetById(curId);
+                    if (cuser != null)
+                    {
+                        Console.WriteLine($" User {cuser}");
+                        users.Add(cuser);
+                    }
+                }
+            });
+            Core.Class.Actives dataObj = new Core.Class.Actives()
+            {
+                users = users,
+                type = "users"
+            };
+
+            return JsonConvert.SerializeObject(dataObj);
         }
 
         protected override void OnOpen()
         {
             _name = getName();
-            Console.WriteLine($"Name: {_name}");
 
-            var fmt = "{0} has logged in!";
-            var msg = string.Format(fmt, _name);
+            if (_name == null)
+                return;
 
-            Sessions.Broadcast(msg);
+            //Add the user to the list
+            FuxionManager.AddObject(new Core.Class.User()
+            {
+                id = this.ID,
+                name = _name,
+            });
+
+            Console.WriteLine($"Connected: {_name} with id of #{this.ID}");
+            string stringjson = this.getUserObjectString(this.ID, _name, "open");
+            Sessions.Broadcast(stringjson);
         }
     }
 }

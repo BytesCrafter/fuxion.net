@@ -61,11 +61,17 @@
     </CustomCommands>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net35\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.ServiceModel" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\Actives.cs" />
+    <Compile Include="Class\Message.cs" />
+    <Compile Include="Class\User.cs" />
     <Compile Include="Core\AssemblyInfo.cs" />
     <Compile Include="Core\Ext.cs" />
     <Compile Include="Core\MessageEventArgs.cs" />
@@ -74,6 +80,7 @@
     <Compile Include="Core\ErrorEventArgs.cs" />
     <Compile Include="Core\WebSocket.cs" />
     <Compile Include="FuxionClient.cs" />
+    <Compile Include="FuxionManager.cs" />
     <Compile Include="FuxionServer.cs" />
     <Compile Include="Server\WebSocketServer.cs" />
     <Compile Include="Net\AuthenticationSchemes.cs" />
@@ -150,5 +157,8 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>
