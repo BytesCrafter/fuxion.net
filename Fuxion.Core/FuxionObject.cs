@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 using System.Threading;
 using WebSocketSharp;
 using WebSocketSharp.Server;
@@ -49,21 +48,20 @@ namespace Fuxion
 
         protected string getUserObjectString(string _id, string _name, string _type = "")
         {
-            Core.Class.User userString = new Core.Class.User()
+            Core.Class.User msg = new Core.Class.User()
             {
                 id = _id,
                 name = _name,
                 type = _type
             };
-            return JsonConvert.SerializeObject(userString);
+            return msg.ToJson();
         }
 
         protected string getMessageString(string _id, string _data)
         {
-            Core.Class.Message msg = JsonConvert
-                .DeserializeObject<Core.Class.Message>(_data);
+            Core.Class.Message msg = Core.Class.Message.fromJson(_data);
             msg.id = this.ID;
-            return JsonConvert.SerializeObject(msg);
+            return msg.ToJson();
         }
 
         protected override void OnClose(CloseEventArgs e)
@@ -85,6 +83,13 @@ namespace Fuxion
 
         protected override void OnMessage(MessageEventArgs e)
         {
+            // Note: Because we are using native JSON encoder and decoder,
+            // please note that passing a message
+            if (e.Data.Contains("\"data\":\"\","))
+            {
+                return; //Block all forbidden message regex.
+            }
+
             if (e.Data == "users-list")
             {
                 string userList = this.ListUser();
@@ -140,7 +145,7 @@ namespace Fuxion
                 type = "users"
             };
 
-            return JsonConvert.SerializeObject(dataObj);
+            return dataObj.ToJson();
         }
 
         protected override void OnOpen()
