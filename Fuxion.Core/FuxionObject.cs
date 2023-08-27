@@ -13,7 +13,7 @@ namespace Fuxion
 
         public FuxionObject()
         {
-            _prefix = "user#";
+            _prefix = "object#";
         }
 
         public string Prefix
@@ -25,7 +25,7 @@ namespace Fuxion
 
             set
             {
-                _prefix = !value.IsNullOrEmpty() ? value : "user#";
+                _prefix = !value.IsNullOrEmpty() ? value : "object#";
             }
         }
 

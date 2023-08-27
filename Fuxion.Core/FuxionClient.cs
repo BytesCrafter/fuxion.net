@@ -6,25 +6,27 @@ namespace Fuxion.Client
 {
     public class FuxionClient
     {
-        public void Connect()
+        public void Connect(string ipadd, int port, string channel = "chat", string uname = "", Action<WebSocket> instance = null)
         {
-            using (var ws = new WebSocket("ws://10.12.0.2:8000/Chat/?name=nobita"))
+            using (var ws = new WebSocket($"ws://{ipadd}:{port}/{channel}/?name={uname}"))
             {
-                /*
                 ws.OnMessage += (sender, e) =>
-                Console.WriteLine("Laputa says: " + e.Data);
-                */
+                    Console.WriteLine("Client says: " + e.Data);
 
+                instance(ws);
                 ws.Connect();
 
+                // To enable the Per-message Compression extension.
+                ws.Compression = CompressionMethod.Deflate;
+
+                // To change the wait time for the response to the WebSocket Ping or Close.
+                ws.WaitTime = TimeSpan.FromSeconds (5);
 
                 while (ws.IsAlive)
                 {
-                    Thread.Sleep(100);
-                    ws.Send("Keep in mind that WebSocket performance and limits can vary between different WebSocket libraries, browsers, and server configurations. If you're dealing with specific requirements or scenarios, it's recommended to perform testing to determine the optimal approach for your use case.");
+                    Thread.Sleep(1000);
+                    ws.Ping("");
                 }
-
-                Console.ReadKey(true);
             }
         }
     }
