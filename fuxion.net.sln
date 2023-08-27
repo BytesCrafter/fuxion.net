@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fuxion.Console", "Fuxion.Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fuxion.Core", "Fuxion.Core\Fuxion.Core.csproj", "{73A5AA71-32C6-4712-9E65-5A36A6B97BA1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fuxion.Test", "Fuxion.Test\Fuxion.Test.csproj", "{C648BA25-77E5-4A40-A97F-D0AA37B9FB26}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug_Ubuntu|Any CPU = Debug_Ubuntu|Any CPU
