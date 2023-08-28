@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fuxion.Desktop", "Fuxion.De
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fuxion.Test", "Fuxion.Test\Fuxion.Test.csproj", "{C648BA25-77E5-4A40-A97F-D0AA37B9FB26}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fuxion.Web", "Fuxion.Web\Fuxion.Web.csproj", "{C75D8292-EBDA-4F17-9DAB-4B8A56A50AA2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug_Ubuntu|Any CPU = Debug_Ubuntu|Any CPU
