@@ -1,45 +1,54 @@
-﻿
-using Fuxion;
-using Fuxion.Utilities;
-
+﻿using System.Net.Sockets;
+using System.Net;
 using System;
-using System.Configuration;
-using System.Security.Cryptography.X509Certificates;
-using WebSocketSharp;
-using WebSocketSharp.Net;
-using WebSocketSharp.Server;
-using Fuxion.Server;
-using Fuxion.Client;
+
+using Fuxion.Utilities;
+using Fuxion.WebSocket;
 
 class Program 
 {
     static void Main(string[] args) 
     {
-        if (args.Length >= 1 && args[0]=="client") 
-        {
-            int clients = 100;
-            for (int i = 0; i < clients; i++)
-            {
-                FuxionClient client = new FuxionClient();
-               client.Connect("localhost", 8000);
-            }
-        } 
-        
-        else
+        if (args.Length > 0) 
         {
             Program.Process(args);
+        }
+
+        else 
+        {
+            Console.WriteLine("Invalid command!");
         }
     }
 
     protected static void Process(string[] strings) 
     {
-        // Prepare the arguments for running the websocket server.
-        string[] commands = strings; // StringUtil.Shift(strings, 1);
-        string webip = commands.Length >= 1 ? commands[0] : System.Net.IPAddress.Loopback.ToString();
-        int webport = commands.Length >= 2 ? Int32.Parse(commands[1]) : 8000;
+        if( strings.Length > 0 && strings[0] == "server" ) {
+            Console.WriteLine("Server is running...");
 
-        //Instantiate WebSocketServer using the arguments passed.
-        FuxionServer server = new FuxionServer();
-        server.StartServer(webip, webport);
+            // Prepare the arguments for running the websocket server.
+            string[] commands = StringUtil.Shift(strings, 1);
+            string webip = strings.Length > 2 ? commands[0] : "127.0.0.1";
+            int webport = commands.Length > 1 ? Int32.Parse(commands[1]) : 8080;
+
+            // Instantiate WS Server and Start.
+            WebSocketServer server = new WebSocketServer();
+            server.Start(webip, webport);
+        }
+
+        
+        if( strings.Length > 0 && strings[0] == "client" ) {
+            Console.WriteLine("Client is connecting...");
+
+            // Prepare the arguments for running the websocket client.
+            string[] commands = StringUtil.Shift(strings, 1);
+            string webip = strings.Length > 2 ? commands[0] : "127.0.0.1";
+            int webport = commands.Length > 1 ? Int32.Parse(commands[1]) : 8080;
+
+            // Instantiate WS Client and Connect.
+            WebSocketClient client = new WebSocketClient();
+            client.Connect(webip, webport);
+        }
+        
+        Console.WriteLine("Command invalid...");
     }
 }
