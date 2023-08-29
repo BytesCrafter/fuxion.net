@@ -1,4 +1,5 @@
 
+using Fuxion.Server;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -6,9 +7,16 @@ using System.Text.RegularExpressions;
 
 namespace Fuxion.WebSocket;
 
-public class WebSocketServer 
+public class WebSocketServer
 {
-    public void Start(string webip, int webport) 
+    public void StartOption1(string webip, int webport)
+    {
+        //Instantiate WebSocketServer using the arguments passed.
+        FuxionServer server = new FuxionServer();
+        server.StartServer(webip, webport);
+    }
+
+    public void StartOption2(string webip, int webport)
     {
         // Intialized the TcpListener with the arguments provided.
         TcpListener server = new TcpListener(IPAddress.Parse(webip), webport);
@@ -25,15 +33,17 @@ public class WebSocketServer
 
         // Enter to an infinite cycle to be able to handle every change in stream
         NetworkStream stream = client.GetStream();
-        while (true) {
-            while (!stream.DataAvailable);
-            while (client.Available < 3); // match against "get"
+        while (true)
+        {
+            while (!stream.DataAvailable) ;
+            while (client.Available < 3) ; // match against "get"
 
             byte[] bytes = new byte[client.Available];
             stream.Read(bytes, 0, bytes.Length);
             string s = Encoding.UTF8.GetString(bytes);
 
-            if (Regex.IsMatch(s, "^GET", RegexOptions.IgnoreCase)) {
+            if (Regex.IsMatch(s, "^GET", RegexOptions.IgnoreCase))
+            {
                 Console.WriteLine("=====Handshaking from client=====\n{0}", s);
 
                 // 1. Obtain the value of the "Sec-WebSocket-Key" request header without any leading or trailing whitespace
@@ -53,9 +63,9 @@ public class WebSocketServer
                     "Sec-WebSocket-Accept: " + swkaSha1Base64 + "\r\n\r\n");
 
                 stream.Write(response, 0, response.Length);
-            } 
-            
-            else 
+            }
+
+            else
             {
                 bool fin = (bytes[0] & 0b10000000) != 0,
                     mask = (bytes[1] & 0b10000000) != 0; // must be true, "All messages from the client to the server have this bit set"
@@ -63,29 +73,29 @@ public class WebSocketServer
                     offset = 2;
                 ulong msglen = (ulong)bytes[1] & 0b01111111;
 
-                if (msglen == 126) 
+                if (msglen == 126)
                 {
                     // bytes are reversed because websocket will print them in Big-Endian, whereas
                     // BitConverter will want them arranged in little-endian on windows
                     msglen = BitConverter.ToUInt16(new byte[] { bytes[3], bytes[2] }, 0);
                     offset = 4;
-                } 
-                
-                else if (msglen == 127) 
+                }
+
+                else if (msglen == 127)
                 {
                     // To test the below code, we need to manually buffer larger messages — since the NIC's autobuffering
                     // may be too latency-friendly for this code to run (that is, we may have only some of the bytes in this
                     // websocket frame available through client.Available).
-                    msglen = BitConverter.ToUInt64(new byte[] { bytes[9], bytes[8], bytes[7], bytes[6], bytes[5], bytes[4], bytes[3], bytes[2] },0);
+                    msglen = BitConverter.ToUInt64(new byte[] { bytes[9], bytes[8], bytes[7], bytes[6], bytes[5], bytes[4], bytes[3], bytes[2] }, 0);
                     offset = 10;
                 }
 
-                if (msglen == 0) 
+                if (msglen == 0)
                 {
                     Console.WriteLine("msglen == 0");
-                } 
-                
-                else if (mask) 
+                }
+
+                else if (mask)
                 {
                     byte[] decoded = new byte[msglen];
                     byte[] masks = new byte[4] { bytes[offset], bytes[offset + 1], bytes[offset + 2], bytes[offset + 3] };
@@ -98,7 +108,7 @@ public class WebSocketServer
                     Console.WriteLine("{0}", text);
                 }
 
-                else 
+                else
                 {
                     Console.WriteLine("mask bit not set");
                 }

@@ -1,6 +1,3 @@
-
-using System.Net;
-using System.Net.Sockets;
 using System.Net.WebSockets;
 
 namespace Fuxion.WebSocket;
@@ -10,10 +7,10 @@ public class WebSocketClient
     public string Connect(string webip, int webport)
     {
         var connection = this.TryConnect(webip, webport);
-        return connection.Result; 
+        return connection.Result;
     }
 
-    public async Task<string> TryConnect(string webip, int webport) 
+    public async Task<string> TryConnect(string webip, int webport)
     {
         CancellationTokenSource source = new CancellationTokenSource();
         using (var ws = new ClientWebSocket())
@@ -28,7 +25,7 @@ public class WebSocketClient
                     await ws.CloseAsync(WebSocketCloseStatus.NormalClosure, string.Empty, CancellationToken.None);
                     return "closed";
                 }
-                
+
                 else
                 {
                     HandleMessage(buffer, result.Count);
