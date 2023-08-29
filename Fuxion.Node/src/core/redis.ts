@@ -3,7 +3,8 @@ import { createClient } from 'redis'
 import { createAdapter } from '@socket.io/redis-adapter'
 import { environment } from '../config'
 
-const pubClient = createClient({url: `redis://`+environment.redis+`:6379/1`})
+const address: string = environment.redis.address.toString();
+const pubClient = createClient({url: "redis://" + address + ":6379/1"})
 pubClient.on('error', err => console.log('Redis Main Client Error', err))
 pubClient.connect()
 
