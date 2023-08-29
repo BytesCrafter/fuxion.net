@@ -1,11 +1,18 @@
 {
-  "name": "fuxion.node",
-  "version": "0.0.0",
-  "description": "Fuxion.Node",
-  "main": "app.js",
-  "author": {
-    "name": ""
+  "name": "fuxion.net",
+  "version": "0.1.0",
+  "description": "Fuxion NET",
+  "main": "fuxion.js",
+  "scripts": {
+    "start": "node server.js --modules=all",
+    "test": "node examples/server.js",
+    "pretest": "node src/tools/pre-test.js",
+    "posttest": "node src/tools/post-test.js"
   },
+  "author": {
+    "name": "BytesCrafter"
+  },
+  "license": "MIT",
   "devDependencies": {
     "eslint": "^8.21.0"
   },
