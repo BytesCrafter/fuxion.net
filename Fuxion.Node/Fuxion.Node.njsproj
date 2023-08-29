@@ -34,6 +34,7 @@
     <Content Include="demo.js" />
     <Content Include="docs\MODULES.md" />
     <Content Include="docs\TECHNOLOGIES.md" />
+    <Content Include="install.sh" />
     <Content Include="package.json" />
     <Content Include="public\demo.html" />
     <Content Include="README.md" />
