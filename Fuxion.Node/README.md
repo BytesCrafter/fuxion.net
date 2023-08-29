@@ -41,6 +41,38 @@ To get started with Fuxion NET and create your real-time WebSocket server:
    ```
 5 The server is now up and running! You can begin building your real-time applications by integrating the provided WebSocket APIs.
 
+## Development
+
+### Command line stardards
+
+-- If you want to run only the master server, you can declare all the possible modules and have a value which should be target port. 
+```
+node server.js --master=19090
+```
+
+-- If you want to run two or more modules at process, you can declare more than one arguments with their corresponding ports.
+```
+node server.js --master=19090 --game=9090
+```
+
+-- If you now want just to run all the module at one process, you can just execute this command.
+```
+node server.js --modules=all
+```
+
+Here are the arguments that you can pass for you to be able to have your development flexible.
+```
+--production=true //default false
+--logging=false //default true
+--redis-password=juandelacruz //default ""
+--allowed-origins=0.0.0.0,example.com //default 0.0.0.0
+```
+
+Note: Please make sure that the port is is available or no service is listening. For linux, you can use:
+```
+netstat -tulpn | grep LISTEN
+```
+
 ## Examples
 
 Explore the examples/ directory for sample applications that showcase Fuxion NET's capabilities in various scenarios, such as chat applications, real-time games, and IoT device communication.
