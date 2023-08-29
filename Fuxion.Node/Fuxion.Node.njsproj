@@ -11,7 +11,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>d06e40d9-11cb-420b-9b49-fefd933a53f1</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>demo.js</StartupFile>
+    <StartupFile>examples\server.js</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -31,19 +31,20 @@
     <Content Include="configs\artillery.yaml" />
     <Content Include="configs\nginx.conf" />
     <Content Include="configs\server.json" />
-    <Content Include="demo.js" />
+    <Content Include="examples\server.js" />
     <Content Include="docs\MODULES.md" />
     <Content Include="docs\TECHNOLOGIES.md" />
     <Content Include="install.sh" />
     <Content Include="package.json" />
-    <Content Include="public\demo.html" />
+    <Content Include="examples\public\demo.html" />
     <Content Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="docs\" />
     <Folder Include="modules\" />
     <Folder Include="configs\" />
-    <Folder Include="public\" />
+    <Folder Include="examples\" />
+    <Folder Include="examples\public\" />
     <Folder Include="src\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
