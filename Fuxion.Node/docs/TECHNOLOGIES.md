@@ -36,31 +36,26 @@ The project's repository can be organized as follows:
 
 ```
 real-time-server/
-|-- modules/
-|   |-- chat/
-|   |-- voice/
-|   |-- world/
-|   |-- game/
-|   |-- auto/
-|
-|-- docker/
+|-- configs/
+|   |-- nginx.conf
 |   |-- Dockerfile.chat
 |   |-- Dockerfile.voice
 |   |-- Dockerfile.world
 |   |-- Dockerfile.game
 |   |-- Dockerfile.auto
 |   |-- docker-compose.yml
-|
+|-- modules/
+|   |-- chat/
+|   |-- voice/
+|   |-- world/
+|   |-- game/
+|   |-- auto/
 |-- src/
 |   |-- chat-server.js
 |   |-- voice-server.js
 |   |-- world-server.js
 |   |-- game-server.js
 |   |-- auto-server.js
-|
-|-- nginx/
-|   |-- nginx.conf
-|
 |-- README.md
 |-- LICENSE
 ```

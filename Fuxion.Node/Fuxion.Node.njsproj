@@ -28,15 +28,19 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="configs\nginx.conf" />
+    <Content Include="configs\server.json" />
     <Content Include="demo.js" />
     <Content Include="docs\MODULES.md" />
-    <Content Include="docs\TECHNOLOGIES" />
+    <Content Include="docs\TECHNOLOGIES.md" />
     <Content Include="package.json" />
     <Content Include="public\demo.html" />
     <Content Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="docs\" />
+    <Folder Include="modules\" />
+    <Folder Include="configs\" />
     <Folder Include="public\" />
     <Folder Include="src\" />
   </ItemGroup>
