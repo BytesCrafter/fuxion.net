@@ -29,11 +29,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="demo.js" />
+    <Content Include="docs\MODULES.md" />
     <Content Include="package.json" />
     <Content Include="public\demo.html" />
     <Content Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="docs\" />
     <Folder Include="public\" />
     <Folder Include="src\" />
   </ItemGroup>
