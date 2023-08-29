@@ -1,0 +1,29 @@
+# Sample load test. $ artillery run artillery.yaml
+# Note: unit int are in seconds.
+# Note: Make sure on your emit on server to check if function.
+# command: artillery run tests/artillery.yaml
+
+config:
+  target: "http://0.0.0.0:19090" #master server
+  socketio:
+    transports: ["websocket", "polling"] #transport layer.
+    query:  # pass query here!
+      wpid: "1"
+      snid: "PUT_SESSION_HASH_HERE"
+  phases:
+    - duration: 10 # how many seconds to create every seconds.
+      arrivalRate: 5 # create virtual users per seconds.
+scenarios:
+  - engine: "socketio"
+    flow:
+      - emit:
+          channel: "connects"
+          data: "{ wpid: 'user-{{ $randomString() }}' }'"
+      - loop:
+          - emit:
+              channel: "pub"
+              data: #make an object of emit.
+                m: "The message is {{ $randomString() }}!"
+          - think: 1 #second before the next send emit.
+        count: 5 #how many times this commit be done.
+      - think: 10 #time before virtual user disconnect
