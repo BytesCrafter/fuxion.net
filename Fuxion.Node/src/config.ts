@@ -1,7 +1,11 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 
 export const environment = {
-    production: false
+    production: false,
+    redis: {
+      address: "127.0.0.1",
+      password: ""
+    }
 };
   
 /*

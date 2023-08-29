@@ -1,6 +1,7 @@
 #!/usr/bin/env Fuxion
 
 import { Server } from "socket.io"
+import { RedisConnect } from './redis'
 import { environment } from '../config.js';
 import path from "path"
 
@@ -10,6 +11,7 @@ const http = require('http').Server(app)
 export class WebSocketServer {
 
     public server: Server
+    public redis: RedisConnect
 
     constructor(
         public port: string
@@ -18,15 +20,19 @@ export class WebSocketServer {
             pingInterval: 10000,
             pingTimeout: 5000
         })
+
+        this.redis = new RedisConnect(this.server);
     }
     
     startServer() {
         this.server.on('connection', (socket: any) => {
+            console.log("socket connected");
             socket.on('chat message', (msg: any) => {
                 this.server.emit('chat message', msg)
             });
+            this.server.emit("chat message", "Hello All!");
         });
-
+        
         if(environment.production == false) {
             app.get('/', (req: any, res: any) => {
                 const index = path.join(__dirname, '..', '/public/demo.html')
