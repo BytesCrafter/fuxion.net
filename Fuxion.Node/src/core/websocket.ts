@@ -2,7 +2,8 @@
 
 import { Server } from "socket.io"
 import { RedisConnect } from './redis'
-import { environment } from '../config.js'
+import { Handshake } from './handshake' 
+import { environment } from '../config'
 import path from "path"
 
 const app = require('express')()
@@ -20,7 +21,7 @@ export class WebSocketServer {
             pingInterval: 10000,
             pingTimeout: 5000
         })
-
+        this.server.use(Handshake.verify);
         this.redis = new RedisConnect(this.server)
     }
     
@@ -44,7 +45,7 @@ export class WebSocketServer {
         
         if(environment.production == false) {
             app.get('/', (req: any, res: any) => {
-                const index = path.join(__dirname, '..', '/public/demo.html')
+                const index = path.join(__dirname, '/public/demo.html')
                 res.sendFile( index );
             })
         }

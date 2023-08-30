@@ -1,13 +1,11 @@
 #!/usr/bin/env Fuxion
 
-import { WebSocketServer } from './core/websocket.js';
+import { WebSocketServer } from './core/websocket';
 
 const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const port = process.env.PORT || 3000;
-
-
 
 export class FuxionServer {
 
