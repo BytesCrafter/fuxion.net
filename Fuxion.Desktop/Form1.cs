@@ -1,78 +1,95 @@
-﻿using Fuxion.Client;
-using Fuxion.Server;
-
+﻿
+using Fuxion.Desktop.Models;
+using SocketIOClient;
 using System;
+using System.Collections.Generic;
+using System.Reflection.Emit;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WebSocketSharp;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Fuxion.Desktop
 {
     public partial class Form1 : Form
     {
-        public WebSocket websock = null;
+        SocketIO client = null;
+        public List<Messages> messages = new List<Messages>();
 
         public Form1()
         {
             InitializeComponent();
         }
 
-        public void Connect(string ipadd, int port, string channel = "chat", string uname = "")
+        private int counter = 0;
+
+        public async void Connect(string ipadd, int port, string channel = "/chat", string uname = "")
         {
-            websock = new WebSocket($"ws://{ipadd}:{port}/{channel}/?name={uname}");
+            client = new SocketIO("http://localhost:3000/");
 
-            websock.OnMessage += Websock_OnMessage;
-            websock.OnOpen += Websock_OnOpen;
-            websock.OnClose += Websock_OnClose;
-
-            websock.Connect();
-        }
-
-        private void Websock_OnClose(object sender, CloseEventArgs e)
-        {
-            Console.WriteLine("Disconnected... ");
-            listBox1.Items.Add("\nDisconnected... ");
-        }
-
-        private void Websock_OnOpen(object sender, EventArgs e)
-        {
-            Console.WriteLine("\nConnected... ");
-            listBox1.Items.Add("\nConnected... ");
-
-            panel1.Hide();
-        }
-
-        private void Websock_OnMessage(object sender, MessageEventArgs e)
-        {
-            this.Invoke(new MethodInvoker(delegate ()
+            client.On("chat message", async response =>
             {
-                Console.WriteLine("\nMessage: " + e.Data);
-                listBox1.Items.Add("\n Msg: " + e.Data);
-            }));
+                // You can print the returned data first to decide what to do next.
+                // output: ["ok",{"id":1,"name":"tom"}]
+                Console.WriteLine(response);
+
+                // Get the first data in the response
+                string text = response.GetValue<string>();
+
+                // Get the second data in the response
+                //var dto = response.GetValue<TestDTO>(1);
+
+                this.onMessageReceive(text);
+            });
+
+            client.OnConnected += async (sender, e) =>
+            {
+                this.onMessageReceive("Connected...\n");
+
+                Invoke(new Action(() => panel1.Hide()));
+
+                // Emit a string and an object
+                //var dto = new TestDTO { Id = 123, Name = "bob" };
+                await client.EmitAsync("chat message", "Hello! New Client");
+            };
+
+            client.OnDisconnected += (sender, e) =>
+            {
+                this.onMessageReceive("Disconnected...\n");
+            };
+
+            await client.ConnectAsync();
+        }
+
+        protected void onMessageReceive(string message)
+        {
+            var t = Task.Run(() =>
+            {
+                Console.WriteLine("\nMessage: " + message);
+                Invoke(new Action(() => listBox1.Items.Add("\n Msg: " + message) ));
+            });
+            t.Wait();
+        }
+
+        protected void SendMessage()
+        {
+            string message = textBox1.Text.ToString();
+            this.client.EmitAsync(message);
+            textBox1.Text = "";
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {            
-                string message = textBox1.Text.ToString();
-                this.websock.Send(message);
-                textBox1.Text = "";            
-        }
-
-        private void listBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-
+            this.SendMessage();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Connect("localhost", 8000, "Chat", textBox2.Text);
+            this.Connect("localhost", 3000, "", textBox2.Text);
         }
 
         private void textBox1_Enter(object sender, EventArgs e)
         {
-            string message = textBox1.Text.ToString();
-            this.websock.Send(message);
-            textBox1.Text = "";
+            this.SendMessage();
         }
     }
 }
