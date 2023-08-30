@@ -9,7 +9,11 @@
   "main": "index.js",
   "scripts": {
     "serve": "concurrently \"webpack --watch\" \"nodemon dist/server.js\"",
-    "build": "webpack --progress"
+    "compile": "webpack --progress",
+    "build:linux": "pkg --targets node18-linux-x64 --compress Gzip package.json",
+    "build:windows": "pkg --targets node18-windows-x64 --compress Gzip package.json",
+    "build:macos": "pkg --targets node18-macos-x64 --compress Gzip package.json",
+    "build:all": "pkg package.json"
   },
   "dependencies": {
     "@socket.io/redis-adapter": "^8.2.1",
@@ -27,6 +31,7 @@
     "concurrently": "^8.2.1",
     "copy-webpack-plugin": "^11.0.0",
     "nodemon": "^3.0.1",
+    "pkg": "^5.8.1",
     "ts-loader": "^9.4.4",
     "ts-node": "^10.9.1",
     "tslint": "^5.20.1",
@@ -34,5 +39,11 @@
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4",
     "webpack-node-externals": "^3.0.0"
+  },
+  "bin": "dist/server.js",
+  "pkg": {
+    "scripts": "dist/**/*.js",
+    "assets": "dist/public/*",
+    "outputPath": "builds"
   }
 }
