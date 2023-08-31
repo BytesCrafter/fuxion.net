@@ -10,10 +10,13 @@
   "scripts": {
     "serve": "concurrently \"webpack --watch\" \"nodemon dist/server.js\"",
     "compile": "webpack --progress",
+    "compile:watch": "webpack --watch --progress",
     "build:linux": "pkg --targets node18-linux-x64 --compress Gzip package.json",
     "build:windows": "pkg --targets node18-windows-x64 --compress Gzip package.json",
     "build:macos": "pkg --targets node18-macos-x64 --compress Gzip package.json",
-    "build:all": "pkg package.json"
+    "build:all": "pkg package.json",
+    "build:start": "npm run compile && npm run build:windows",
+    "build:serve": "start builds/fuxion.exe"
   },
   "dependencies": {
     "@socket.io/redis-adapter": "^8.2.1",
