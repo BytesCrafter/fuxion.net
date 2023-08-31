@@ -30,12 +30,12 @@ To get started with Fuxion NET and create your real-time WebSocket server:
    ```
 4. Configure the server settings and options to match your project requirements.
    ```
-      master.port = 8000
-      chat.port = 8001
-      voice.port = 8002
-      world.port = 8003
-      game.port = 8004
-      auto.port = 8005
+      master.port = 19090
+      chat.port = 6060
+      voice.port = 5050
+      world.port = 4530
+      game.port = 9090
+      auto.port = 1883
       redis.ip = 0.0.0.0
       redis.port = 6379
    ```
