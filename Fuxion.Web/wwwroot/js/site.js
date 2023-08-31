@@ -7,7 +7,7 @@ $(document).ready(function () {
     let websocket = null;
     //const wsUri = "ws://10.12.0.11:8000/chat/?name=";
     //const wsUri = "ws://localhost:4649/chat/?name=";
-    const wsUri = "ws://localhost:8000/chat/?name=";
+    const wsUri = "ws://localhost:3000/socket.io/?EIO=4&transport=websocket";
 
     function debugMessage(message) {
         console.log(message);
@@ -145,8 +145,18 @@ $(document).ready(function () {
             return;
         }
 
-        var username = $("#connect-input").val();
-        websocket = new WebSocket(wsUri + username);
+       //var username = $("#connect-input").val();
+        //websocket = new WebSocket(wsUri + username);
+
+        const socket = io("//localhost:3000", {
+            reconnectionDelayMax: 10000,
+            auth: {
+                token: "123"
+            },
+            query: {
+                "my-key": "my-value"
+            }
+        });
 
         websocket.onopen = (e) => {
             $("#login-container").addClass("hide");
