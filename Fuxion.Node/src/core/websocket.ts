@@ -11,12 +11,11 @@ const http = require('http').Server(app)
 
 export class WebSocketServer {
 
+    public port: string = ""
     public server: Server
     public redis: RedisConnect
 
-    constructor(
-        public port: string
-    ) {
+    constructor() {
         this.server = new Server(http, {
             pingInterval: 10000,
             pingTimeout: 5000
@@ -25,7 +24,9 @@ export class WebSocketServer {
         this.redis = new RedisConnect(this.server)
     }
     
-    startServer() {
+    startServer(port: string) {
+        this.port = port; //Set the port.
+
         this.server.on('connection', (socket: any) => {
             console.log("Connected: " + socket.id);
 
