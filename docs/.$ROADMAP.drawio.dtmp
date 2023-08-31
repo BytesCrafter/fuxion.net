@@ -1,0 +1,83 @@
+<mxfile host="Electron" modified="2023-08-31T11:00:51.190Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.6.5 Chrome/114.0.5735.243 Electron/25.3.1 Safari/537.36" etag="3k4K1BbEFjrmQJR6fATO" version="21.6.5" type="device" pages="3">
+  <diagram name="Firewall" id="5Xnl30hi8wb5Fe6ND1Tj">
+    <mxGraphModel dx="1839" dy="577" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="HFLRNyTimN5ydJur4bww-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="HyCaQ5oidwBzuns39z5Z-1" target="HFLRNyTimN5ydJur4bww-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HFLRNyTimN5ydJur4bww-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="HyCaQ5oidwBzuns39z5Z-1" target="HFLRNyTimN5ydJur4bww-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HyCaQ5oidwBzuns39z5Z-1" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-645" y="370" width="440" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="HFLRNyTimN5ydJur4bww-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="HyCaQ5oidwBzuns39z5Z-2" target="HyCaQ5oidwBzuns39z5Z-25">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HyCaQ5oidwBzuns39z5Z-2" value="&lt;b&gt;INTERNET&lt;/b&gt;" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-490" y="200" width="130" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="HyCaQ5oidwBzuns39z5Z-22" value="&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;VM or&amp;nbsp; &amp;nbsp;&amp;nbsp;&lt;br&gt;&amp;nbsp; DOCKER" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=20;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="-615" y="580" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="HyCaQ5oidwBzuns39z5Z-23" value="&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;VM or&amp;nbsp; &amp;nbsp;&amp;nbsp;&lt;br&gt;&amp;nbsp; DOCKER" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=20;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="-475" y="580" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="HyCaQ5oidwBzuns39z5Z-24" value="&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;VM or&amp;nbsp; &amp;nbsp;&amp;nbsp;&lt;br&gt;&amp;nbsp; DOCKER" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=20;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="-335" y="580" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="HyCaQ5oidwBzuns39z5Z-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="HyCaQ5oidwBzuns39z5Z-25" target="HyCaQ5oidwBzuns39z5Z-23">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HyCaQ5oidwBzuns39z5Z-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="HyCaQ5oidwBzuns39z5Z-25" target="HyCaQ5oidwBzuns39z5Z-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HyCaQ5oidwBzuns39z5Z-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="HyCaQ5oidwBzuns39z5Z-25" target="HyCaQ5oidwBzuns39z5Z-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HyCaQ5oidwBzuns39z5Z-25" value="PROXI" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-485" y="400" width="120" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="HyCaQ5oidwBzuns39z5Z-33" value="&amp;nbsp; &amp;nbsp; &amp;nbsp;REDIS&lt;br&gt;&amp;nbsp; &amp;nbsp; CLUSTER" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=20;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="-605" y="890" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="HFLRNyTimN5ydJur4bww-1" value="&amp;nbsp;ERPAT&lt;br&gt;API" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=20;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="-365" y="890" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="HFLRNyTimN5ydJur4bww-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="HFLRNyTimN5ydJur4bww-2" target="HyCaQ5oidwBzuns39z5Z-33">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HFLRNyTimN5ydJur4bww-2" value="PERSISTANT&lt;br&gt;DATA IN MEMORY" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-615" y="780" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="HFLRNyTimN5ydJur4bww-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="HFLRNyTimN5ydJur4bww-6" target="HFLRNyTimN5ydJur4bww-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HFLRNyTimN5ydJur4bww-6" value="JWT AUTH &amp;amp;&lt;br&gt;DB SERVER" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-375" y="780" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="HFLRNyTimN5ydJur4bww-10" value="&lt;h1&gt;Fuxion NET&lt;/h1&gt;&lt;p&gt;Initial server architecture for this realtime project which offers persistant&lt;/p&gt;&lt;p&gt;realtime data using redis and also can utilize authentication and database&lt;/p&gt;&lt;p&gt;integration using the laravel api of ERPat project.&amp;nbsp;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;align=center;" vertex="1" parent="1">
+          <mxGeometry x="-710" y="40" width="570" height="140" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="n2w8iifuVCuhA2PZ4Pcw" name="Docker">
+    <mxGraphModel dx="1434" dy="836" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="r8G7Dz6bfN909kCqWs_H" name="Redis">
+    <mxGraphModel dx="1434" dy="836" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
